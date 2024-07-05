@@ -1,0 +1,42 @@
+import random
+import math
+
+def number_guessing_game(lower, upper):
+    # Calculate total chances based on the range
+    total_chances = math.ceil(math.log2(upper - lower + 1))
+    print(f"You have {total_chances} chances to guess the integer between {lower} and {upper}.\n")
+
+    # Initialize variables
+    count = 0
+    flag = False
+    x = random.randint(lower, upper)
+
+    # Guessing loop
+    while count < total_chances:
+        count += 1
+        guess = int(input("Guess a number: "))
+
+        # Check the guess
+        if guess == x:
+            print(f"Congratulations! You guessed it correctly in {count} tries.")
+            flag = True
+            break
+        elif guess < x:
+            print("Your guess is too low!")
+        else:
+            print("Your guess is too high!")
+
+    # Display result if not guessed correctly
+    if not flag:
+        print(f"\nThe number was {x}. Better luck next time!")
+
+def main():
+    # Taking inputs for lower and upper bounds
+    lower = int(input("Enter Lower bound: "))
+    upper = int(input("Enter Upper bound: "))
+
+    # Start the game
+    number_guessing_game(lower, upper)
+
+if __name__ == "__main__":
+    main()
